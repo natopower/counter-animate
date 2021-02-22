@@ -5,5 +5,8 @@ margin: 0 !important;
 }
 
 .odometer {
-
+   font-family: 'Roboto', sans-serif;
+   font-size: 500px;
+   color: black;
+   text-align: center;
 }
