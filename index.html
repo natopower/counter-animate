@@ -17,7 +17,7 @@
 
         function refresh() {
             config.forEach(function (c) {
-                let element = $('.' + c.name.replaceAll(' ', '_'));
+                let element = $('.' + c.name.split(' ').join('_'));
 
                 $.ajax({
                     type: 'GET',
@@ -37,9 +37,9 @@
 
                 let element = $('.main div:last')
                 element.append("<p>" + c.name + "</p>")
-                element.append("<span class='" + c.name.replaceAll(' ', '_') + "'></span>")
+                element.append("<span class='" + c.name.split(' ').join('_') + "'></span>")
 
-                var odometer = new Odometer({ el: $('.' + c.name.replaceAll(' ', '_'))[0], value: 0});
+                var odometer = new Odometer({ el: $('.' + c.name.split(' ').join('_'))[0], value: 0});
                 odometer.render();
             })
 
