@@ -5,7 +5,7 @@
 
 <p>It's simple - just edit the config.json file to give it a path for a .txt file, and it will take the numbers in it and add a counting animation - it also updates every second, so live counters like subscriber/follower counts would work well.</p>
 
-<p>You also will likely need a local SQL/Apache server running (eg. Laragon, XAMPP, etc) running in the background.</p>
+<p>You also will likely need a local Apache server running (eg. Laragon, XAMPP, etc) running in the background.</p>
 
 <p>Video turotial coming soon!</p>
 
