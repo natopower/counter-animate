@@ -1,0 +1,10 @@
+[
+  {
+    "name": "Example Name",
+    "file_path": "path/to/file.txt"
+  },
+  {
+    "name": "Example Name 2",
+    "file_path": "path/to/file2.txt"
+  }
+]

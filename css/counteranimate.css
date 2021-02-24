@@ -1,12 +1,14 @@
-body{
-background-color: #transparent;
-padding: 0 !important;
-margin: 0 !important;
+body {
+   background-color: transparent;
+   padding: 0 !important;
+   margin: 0 !important;
+
+   font-family: 'Roboto', sans-serif;
+   color: black;
+   text-align: center;
 }
 
 .odometer {
-   font-family: 'Roboto', sans-serif;
-   font-size: 500px;
-   color: black;
-   text-align: center;
+   font-size: 200px;
+   margin-bottom: 2%;
 }

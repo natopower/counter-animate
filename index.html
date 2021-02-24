@@ -3,40 +3,64 @@
     <title>CounterAnimate by Natopower</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
 
-    <link rel="stylesheet" href="/css/counteranimate.css">
-    <link rel="stylesheet" href="/css/odometer-theme-default.css"/>
+    <link rel="stylesheet" href="css/counteranimate.css">
+    <link rel="stylesheet" href="css/odometer-theme-default.css"/>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
 
-    <script src="/js/jquery-3.5.1.min.js"></script>
-    <script src="/js/odometer.min.js"></script>
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/odometer.min.js"></script>
 
     <script type="text/javascript">
-        function refresh() {
-            var req = new XMLHttpRequest();
-            req.onreadystatechange = function () {
-                if (req.readyState == 4 && req.status == 200) {
-                    console.log ("updating number");
-                    $('.odometer').text(req.responseText);
-                }
-            }
+        odometerOptions = { auto: false }; // Disables auto-initialization
+        let config = getConfig();
 
-            req.open("GET", 'total_youtube_subscriber_count.txt', true);
-            req.send(null);
+        function refresh() {
+            config.forEach(function (c) {
+                let element = $('.' + c.name.replaceAll(' ', '_'));
+
+                $.ajax({
+                    type: 'GET',
+                    url: c.file_path + '?' + Math.random(),
+                    complete: function (r) {
+                        element.text(r.responseText);
+                    }
+                });
+            })
         }
 
         function init() {
-            refresh()
+            let main = $('.main');
+
+            config.forEach(function (c) {
+                main.append('<div></div>')
+
+                let element = $('.main div:last')
+                element.append("<p>" + c.name + "</p>")
+                element.append("<span class='" + c.name.replaceAll(' ', '_') + "'></span>")
+
+                var odometer = new Odometer({ el: $('.' + c.name.replaceAll(' ', '_'))[0], value: 0});
+                odometer.render();
+            })
+
             self.setInterval(function () {
                 refresh()
             }, 1000);
+        }
+
+        function getConfig() {
+            let config = $.ajax({
+                type: 'GET',
+                url: 'config.json?' + Math.random(), // Prevent caching
+                async: false
+            }).responseJSON;
+
+            return config;
         }
     </script>
 </head>
 
 <body onload="init()">
-    <div id="main">
-        <span class="odometer" id="subs"></span>
-    </div>
+    <div class="main"></div>
 </body>
 </html>
